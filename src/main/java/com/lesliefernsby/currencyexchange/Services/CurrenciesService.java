@@ -14,4 +14,5 @@ public interface CurrenciesService {
     Optional<Integer> insertCurrency(String code, String full_name, String sign);
 
     Optional<List<ExchangeRate>> getAllExchangeRates();
+    Optional<ExchangeRate> getExchangeRateByCodes(String from, String to);
 }

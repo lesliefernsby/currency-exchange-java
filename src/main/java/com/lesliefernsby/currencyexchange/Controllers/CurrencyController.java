@@ -58,4 +58,10 @@ public class CurrencyController {
         List<ExchangeRate> exchangeRates = service.getAllExchangeRates().orElseThrow();
         return new ResponseEntity<>(exchangeRates, HttpStatus.OK);
     }
+
+    @GetMapping(path = "/exchange-rates/{from}/{to}")
+    public ResponseEntity<ExchangeRate> getExchangeRateByCodes(@PathVariable String from, @PathVariable String to) {
+        ExchangeRate exchangeRate = service.getExchangeRateByCodes(from, to).orElseThrow();
+        return new ResponseEntity<>(exchangeRate, HttpStatus.OK);
+    }
 }

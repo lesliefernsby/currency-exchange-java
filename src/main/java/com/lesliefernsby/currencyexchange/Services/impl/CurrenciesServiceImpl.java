@@ -53,4 +53,10 @@ public class CurrenciesServiceImpl implements CurrenciesService {
         return Optional.ofNullable(exchangeRates);
     }
 
+    @Override
+    public Optional<ExchangeRate> getExchangeRateByCodes(String from, String to) {
+        ExchangeRate exchangeRate = exchangeRateRepository.findByCodes(from.toUpperCase(), to.toUpperCase());
+        return Optional.ofNullable(exchangeRate);
+    }
+
 }
