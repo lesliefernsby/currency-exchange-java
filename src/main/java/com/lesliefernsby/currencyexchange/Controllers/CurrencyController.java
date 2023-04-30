@@ -1,5 +1,6 @@
 package com.lesliefernsby.currencyexchange.Controllers;
 
+import com.lesliefernsby.currencyexchange.DTO.CurrencyDTO;
 import com.lesliefernsby.currencyexchange.Entities.Currency;
 import com.lesliefernsby.currencyexchange.Entities.ExchangeRate;
 import com.lesliefernsby.currencyexchange.Services.CurrenciesService;
@@ -7,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,6 +33,25 @@ public class CurrencyController {
         List<Currency> currencies = service.getAll().orElseThrow();
         return new ResponseEntity<>(currencies, HttpStatus.OK);
     }
+
+    @GetMapping(path = "/currencies/{id}")
+    public ResponseEntity<Currency> getById(@PathVariable Integer id) {
+        Currency currency = service.getById(id).orElseThrow();
+        return new ResponseEntity<>(currency, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/currencies/code/{code}")
+    public ResponseEntity<Currency> getByCode(@PathVariable String code) {
+        Currency currency = service.getByCode(code).orElseThrow();
+        return new ResponseEntity<>(currency, HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/currencies")
+    public ResponseEntity<Integer> insert(@RequestBody CurrencyDTO currencyDTO) {
+        Integer id = service.insertCurrency(currencyDTO.getCode(), currencyDTO.getFull_name(), currencyDTO.getSign()).orElseThrow();
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
+
 
     @GetMapping(path = "/exchange-rates")
     public ResponseEntity<List<ExchangeRate>> getAllExchangeRates() {

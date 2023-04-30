@@ -9,6 +9,9 @@ import java.util.Optional;
 public interface CurrenciesService {
 
     Optional<List<Currency>> getAll();
+    Optional<Currency> getById(int id);
+    Optional<Currency> getByCode(String code);
+    Optional<Integer> insertCurrency(String code, String full_name, String sign);
 
     Optional<List<ExchangeRate>> getAllExchangeRates();
 }

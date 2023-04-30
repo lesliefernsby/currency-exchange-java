@@ -27,9 +27,30 @@ public class CurrenciesServiceImpl implements CurrenciesService {
         return Optional.ofNullable(currencies);
     }
 
+
+    @Override
+    public Optional<Currency> getById(int id) {
+        Currency currency = currencyRepository.getById(id);
+        return Optional.ofNullable(currency);
+    }
+
+    @Override
+    public Optional<Currency> getByCode(String code) {
+        Currency currency = currencyRepository.getByCode(code.toUpperCase());
+        return Optional.ofNullable(currency);
+    }
+
+    @Override
+    public Optional<Integer> insertCurrency(String code, String full_name, String sign) {
+        currencyRepository.insertCurrency(code.toUpperCase(), full_name, sign);
+        Currency currency = currencyRepository.getByCode(code.toUpperCase());
+        return Optional.ofNullable(currency.getId());
+    }
+
     @Override
     public Optional<List<ExchangeRate>> getAllExchangeRates() {
         List<ExchangeRate> exchangeRates = exchangeRateRepository.findAll();
         return Optional.ofNullable(exchangeRates);
     }
+
 }
