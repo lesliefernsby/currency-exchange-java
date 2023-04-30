@@ -1,9 +1,12 @@
 package com.lesliefernsby.currencyexchange.Entities;
+import jakarta.persistence.Entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import lombok.Data;
 
+
 @Data
+@Entity
 public class Currency {
 
     @Id
