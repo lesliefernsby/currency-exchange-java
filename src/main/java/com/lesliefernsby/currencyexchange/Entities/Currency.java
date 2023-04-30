@@ -32,6 +32,7 @@ public class Currency {
     @Column("sign")
     String sign;
 
+    //I added this method to make the test pass
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -2,11 +2,15 @@ package com.lesliefernsby.currencyexchange.Repositories;
 
 import com.lesliefernsby.currencyexchange.Entities.ExchangeRate;
 import com.lesliefernsby.currencyexchange.Entities.ExchangeRateRowMapper;
+
+import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -31,4 +35,13 @@ public interface ExchangeRateRepository extends CrudRepository<ExchangeRate, Int
             "WHERE bc.code = :baseCurrencyCode AND tc.code = :targetCurrencyCode",
             rowMapperClass = ExchangeRateRowMapper.class)
     public ExchangeRate findByCodes(String baseCurrencyCode, String targetCurrencyCode);
+
+    @Transactional
+    @Modifying
+    @Query(value = "INSERT INTO exchange_rates (base_currency_id, target_currency_id, rate) VALUES (:baseCurrencyId, :targetCurrencyId, :rate)")
+    public Integer insertExchangeRate(Integer baseCurrencyId, Integer targetCurrencyId, BigDecimal rate);
+
+    @Modifying
+    @Query(value = "DELETE FROM exchange_rates WHERE id = :id")
+    public Integer deleteExchangeRate(Integer id);
 }

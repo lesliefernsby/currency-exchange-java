@@ -8,6 +8,7 @@ import com.lesliefernsby.currencyexchange.Services.CurrenciesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,6 +58,21 @@ public class CurrenciesServiceImpl implements CurrenciesService {
     public Optional<ExchangeRate> getExchangeRateByCodes(String from, String to) {
         ExchangeRate exchangeRate = exchangeRateRepository.findByCodes(from.toUpperCase(), to.toUpperCase());
         return Optional.ofNullable(exchangeRate);
+    }
+    
+    @Override
+    public Optional<ExchangeRate> insertExchangeRate(String from, String to, BigDecimal rate) {
+        Currency fromCurrency = currencyRepository.getByCode(from.toUpperCase());
+        Currency toCurrency = currencyRepository.getByCode(to.toUpperCase());
+        exchangeRateRepository.insertExchangeRate(fromCurrency.getId(), toCurrency.getId(), rate);
+        ExchangeRate exchangeRate = exchangeRateRepository.findByCodes(from.toUpperCase(), to.toUpperCase());
+        return Optional.ofNullable(exchangeRate);
+    }
+
+    @Override
+    public Optional<Integer> deleteExchangeRate(Integer id) {
+        exchangeRateRepository.deleteById(id);
+        return Optional.ofNullable(id);
     }
 
 }

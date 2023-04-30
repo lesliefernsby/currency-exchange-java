@@ -3,6 +3,7 @@ package com.lesliefernsby.currencyexchange.Services;
 import com.lesliefernsby.currencyexchange.Entities.Currency;
 import com.lesliefernsby.currencyexchange.Entities.ExchangeRate;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,4 +16,6 @@ public interface CurrenciesService {
 
     Optional<List<ExchangeRate>> getAllExchangeRates();
     Optional<ExchangeRate> getExchangeRateByCodes(String from, String to);
+    Optional<ExchangeRate> insertExchangeRate(String from, String to, BigDecimal rate);
+    Optional<Integer> deleteExchangeRate(Integer id);
 }

@@ -8,3 +8,4 @@
 /home/leslie/Desktop/currency-exchange-java/currency-exchange-java/src/main/java/com/lesliefernsby/currencyexchange/Controllers/CurrencyController.java
 /home/leslie/Desktop/currency-exchange-java/currency-exchange-java/src/main/java/com/lesliefernsby/currencyexchange/Entities/Currency.java
 /home/leslie/Desktop/currency-exchange-java/currency-exchange-java/src/main/java/com/lesliefernsby/currencyexchange/DTO/CurrencyDTO.java
+/home/leslie/Desktop/currency-exchange-java/currency-exchange-java/src/main/java/com/lesliefernsby/currencyexchange/DTO/ExchangeRateDTO.java

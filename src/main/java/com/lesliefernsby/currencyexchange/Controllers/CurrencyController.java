@@ -1,12 +1,14 @@
 package com.lesliefernsby.currencyexchange.Controllers;
 
 import com.lesliefernsby.currencyexchange.DTO.CurrencyDTO;
+import com.lesliefernsby.currencyexchange.DTO.ExchangeRateDTO;
 import com.lesliefernsby.currencyexchange.Entities.Currency;
 import com.lesliefernsby.currencyexchange.Entities.ExchangeRate;
 import com.lesliefernsby.currencyexchange.Services.CurrenciesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,5 +65,17 @@ public class CurrencyController {
     public ResponseEntity<ExchangeRate> getExchangeRateByCodes(@PathVariable String from, @PathVariable String to) {
         ExchangeRate exchangeRate = service.getExchangeRateByCodes(from, to).orElseThrow();
         return new ResponseEntity<>(exchangeRate, HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/exchange-rates")
+    public ResponseEntity<ExchangeRate> insertExchangeRate(@RequestBody ExchangeRateDTO exchangeRate) {
+        ExchangeRate id = service.insertExchangeRate(exchangeRate.getBaseCurrencyCode(), exchangeRate.getTargetCurrencyCode(), exchangeRate.getRate()).orElseThrow();
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
+
+    @DeleteMapping(path = "/exchange-rates/{id}")
+    public ResponseEntity<Integer> deleteExchangeRate(@PathVariable Integer id) {
+        Integer deleted = service.deleteExchangeRate(id).orElseThrow();
+        return new ResponseEntity<>(deleted, HttpStatus.OK);
     }
 }

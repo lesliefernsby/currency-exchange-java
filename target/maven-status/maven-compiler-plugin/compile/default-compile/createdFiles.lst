@@ -2,8 +2,10 @@ com/lesliefernsby/currencyexchange/Entities/ExchangeRate.class
 com/lesliefernsby/currencyexchange/Repositories/CurrencyRepository.class
 com/lesliefernsby/currencyexchange/Entities/Currency.class
 com/lesliefernsby/currencyexchange/Repositories/ExchangeRateRepository.class
+com/lesliefernsby/currencyexchange/DTO/CurrencyDTO.class
 com/lesliefernsby/currencyexchange/CurrencyExchangeApplication.class
 com/lesliefernsby/currencyexchange/Entities/ExchangeRateRowMapper.class
 com/lesliefernsby/currencyexchange/Controllers/CurrencyController.class
+com/lesliefernsby/currencyexchange/DTO/ExchangeRateDTO.class
 com/lesliefernsby/currencyexchange/Services/impl/CurrenciesServiceImpl.class
 com/lesliefernsby/currencyexchange/Services/CurrenciesService.class
