@@ -71,7 +71,7 @@ public class CurrenciesServiceImpl implements CurrenciesService {
 
     @Override
     public Optional<Integer> deleteExchangeRate(Integer id) {
-        exchangeRateRepository.deleteById(id);
+        exchangeRateRepository.deleteExchangeRate(id);
         return Optional.ofNullable(id);
     }
 

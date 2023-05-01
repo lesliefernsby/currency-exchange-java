@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 
 @Data
 @Entity 
+@Table(name = "exchange_rates")
 public class ExchangeRate {
     @Id
     @Column("id")

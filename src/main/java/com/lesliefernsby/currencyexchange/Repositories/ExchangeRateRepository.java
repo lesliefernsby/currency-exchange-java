@@ -6,7 +6,6 @@ import com.lesliefernsby.currencyexchange.Entities.ExchangeRateRowMapper;
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -14,7 +13,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
-@RepositoryRestResource
 public interface ExchangeRateRepository extends CrudRepository<ExchangeRate, Integer> {
 
     @Query(value = "SELECT er.id as id, er.rate as rate, " +
