@@ -41,5 +41,5 @@ public interface ExchangeRateRepository extends CrudRepository<ExchangeRate, Int
 
     @Modifying
     @Query(value = "DELETE FROM exchange_rates WHERE id = :id")
-    public Integer deleteExchangeRate(Integer id);
+    public Boolean deleteExchangeRate(Integer id);
 }
